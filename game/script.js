@@ -1,7 +1,13 @@
+import Levels from "./levels";
+
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 500;
+
+
+// Map
+Levels terreno = new Levels(25,16,32,32,)
 
 // globals variabiles
 const keys = [];
