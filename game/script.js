@@ -7,7 +7,7 @@ canvas.height = 500;
 
 
 // Map
-Levels terreno = new Levels(25,16,32,32,)
+let terreno = new Levels(25,16,32,32,"/PathAndObjects.png",512,512)
 
 // globals variabiles
 const keys = [];
@@ -275,7 +275,8 @@ function collision(first, second){
 if(gameOver == false){
     setInterval(function(){
         ctx.clearRect(0,0,canvas.width,canvas.height)
-        ctx.drawImage(background, 0,-250, canvas.width, canvas.height);
+        //ctx.drawImage(background, 0,-250, canvas.width, canvas.height);
+        terreno.draw(ctx)
         //ctx.drawImage(flor, terrain.x, terrain.y, terrain.width, terrain.height)
         drawSprite(playerSprite, player.width * player.frameX, player.height * player.frameY, player.width, player.height, player.x, player.y, player.width, player.height)
         topFrame()

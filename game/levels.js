@@ -52,7 +52,7 @@ export default class Levels {
 
     draw(canvasContext) {
         //Disegno l'acqua
-        for (let i = 0; i < this.terrein1.length; i++) {
+        for (let i = 0; i < this.terrain1.length; i++) {
             //Ottengo le coordinate sulla canvas
             let dx = (i % this.level_width) * 32;
             let dy = Math.floor(i / this.level_height) * 32;
