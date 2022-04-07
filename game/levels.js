@@ -55,12 +55,12 @@ export default class Levels {
         for (let i = 0; i < this.terrain1.length; i++) {
             //Ottengo le coordinate sulla canvas
             let dx = (i % this.level_width) * 32;
-            let dy = Math.floor(i / this.level_height) * 32;
-            let tile = this.terrain[i];
+            let dy = Math.floor(i / this.tile_height) * 32;
+            let tile = this.terrain1[i];
             
             //Ottengo le coordinate sulla tilemap
             let sx = ((tile  % (this.tileMapImageWidth/32))-1) * 32; //Devo fare -1 perchè il primo tile è il n°1
-            let sy = Math.floor(tile / (this.tileMapImgHeight/32)) * 32;
+            let sy = Math.floor(tile / (this.tileMapImageWidth/32)) * 32;
 
 
             if (this.terrain1[i] != 0) {

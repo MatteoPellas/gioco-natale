@@ -1,4 +1,4 @@
-import Levels from "./levels";
+import Levels from "./levels.js";
 
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext("2d");
@@ -7,7 +7,7 @@ canvas.height = 500;
 
 
 // Map
-let terreno = new Levels(25,16,32,32,"/PathAndObjects.png",512,512)
+let terreno = new Levels(25,16,32,32,"PathAndObjects.png",512,512)
 
 // globals variabiles
 const keys = [];
