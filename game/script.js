@@ -1,13 +1,16 @@
 import Levels from "./levels.js";
+import Layer from "./layer.js";
 
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext("2d");
 canvas.width = 800;
-canvas.height = 500;
+canvas.height = 512;
 
 
 // Map
-let terreno = new Levels(25,16,32,32,"PathAndObjects.png",512,512)
+let layer = new Layer();
+let buildTerrain = new Levels(25,16,32,32,"mainlevbuild.png",640,1024,layer.getTerrain())
+let buildObstacles = new Levels(25,16,32,32,"mainlevbuild.png",640,1024,layer.getObstacles())
 
 // globals variabiles
 const keys = [];
@@ -86,17 +89,7 @@ function handleAmmo(){
 //image and sprite animation
 const playerSprite = new Image();
 playerSprite.src = "bloodelf_male2.png"
-const background = new Image ();
-background.src = "theophile-curto-twfbetc4-x4size.jpg";
-const flor = new Image();
-flor.src = "mntn_gray_d.jpg"
-const terrain = {
-    x : 0,
-    y : canvas.width - 450,
-    width : 150,
-    height : canvas.height,
-    color : "grey" 
-}
+
 
 function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH){
     ctx.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH);
@@ -276,7 +269,8 @@ if(gameOver == false){
     setInterval(function(){
         ctx.clearRect(0,0,canvas.width,canvas.height)
         //ctx.drawImage(background, 0,-250, canvas.width, canvas.height);
-        terreno.draw(ctx)
+        buildTerrain.draw(ctx)
+        buildObstacles.draw(ctx)
         //ctx.drawImage(flor, terrain.x, terrain.y, terrain.width, terrain.height)
         drawSprite(playerSprite, player.width * player.frameX, player.height * player.frameY, player.width, player.height, player.x, player.y, player.width, player.height)
         topFrame()
