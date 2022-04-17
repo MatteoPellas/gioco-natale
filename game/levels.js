@@ -1,4 +1,10 @@
+import CollisionRect from "./collisionrect.js"
+
+
 export default class Levels {
+
+    
+    rects
     level_width; //Altezza e larghezza dell livello (in tiles)
     level_height;
     tile_width; //Dimensione di ogni tile
@@ -7,8 +13,10 @@ export default class Levels {
     tileMapImgHeight; //Le dimensioni della mappa da cui recupero i tile
     tileMapImageWidth;
     level;
+    type;
+    updateCounter=0;
     
-    constructor(level_width, level_height, tile_width, tile_height, tileMapsrc, tileMapImgHeight, tileMapImageWidth, level) {
+    constructor(level_width, level_height, tile_width, tile_height, tileMapsrc, tileMapImgHeight, tileMapImageWidth, level, type) {
         this.level_width = level_width;
         this.level_height = level_height;
         this.tile_width = tile_width;
@@ -18,6 +26,7 @@ export default class Levels {
         this.tileMapImgHeight = tileMapImgHeight;
         this.tileMapImageWidth = tileMapImageWidth;
         this.level = level
+        this.type = type
     }
 
     draw(canvasContext) {
@@ -32,6 +41,12 @@ export default class Levels {
             //Ottengo le coordinate sulla tilemap
             let sx = ((tile  % (this.tileMapImageWidth/32))-1) * 32; //Devo fare -1 perchè il primo tile è il n°1
             let sy = Math.floor(tile / (this.tileMapImageWidth/32)) * 32;
+
+            if (this.type== "collision" && tile[i]!=0 && this.updateCounter<this.level.length){
+                this.rects = new CollisionRect(dx,dy)
+                console.log(i)
+            }
+            this.updateCounter ++
 
 
             if (this.level[i] != 0) {

@@ -1,5 +1,6 @@
 import Levels from "./levels.js";
 import Layer from "./layer.js";
+import CollisionRect from "./collisionrect.js"
 
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext("2d");
@@ -9,8 +10,8 @@ canvas.height = 512;
 
 // Map
 let layer = new Layer();
-let buildTerrain = new Levels(25,16,32,32,"mainlevbuild.png",640,1024,layer.getTerrain())
-let buildObstacles = new Levels(25,16,32,32,"mainlevbuild.png",640,1024,layer.getObstacles())
+let buildTerrain = new Levels(25,16,32,32,"mainlevbuild.png",640,1024,layer.getTerrain(),"terrain")
+let buildObstacles = new Levels(25,16,32,32,"mainlevbuild.png",640,1024,layer.getObstacles(),"collision")
 
 // globals variabiles
 const keys = [];
@@ -154,7 +155,7 @@ function movePlayer(){
         up = false
         player.moving = true;
     }
-    if (keys [87] && player.y>250) {
+    if (keys [87] && player.y>0) {
         player.y -= player.speed;
         player.frameY =3
         player.moving = true;
