@@ -16,12 +16,11 @@ export default class collisionRect{
     getY(){
         return this.y
     }
+    getList(){
+        return this.list
+    }
     
-    //orizontal collision
-
-    collsion
-
-    //vertical collision
+    
 
 
 

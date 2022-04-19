@@ -44,7 +44,7 @@ export default class Levels {
 
             if (this.type== "collision" && tile[i]!=0 && this.updateCounter<this.level.length){
                 this.rects = new CollisionRect(dx,dy)
-                console.log(i)
+                console.log(this.rects)
             }
             this.updateCounter ++
 

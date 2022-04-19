@@ -2,6 +2,7 @@ import Levels from "./levels.js";
 import Layer from "./layer.js";
 import CollisionRect from "./collisionrect.js"
 
+
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext("2d");
 canvas.width = 800;
@@ -29,6 +30,7 @@ let controlTime = false;
 let gameOver = false;
 let caricatore = 12;
 let score = 0;
+let rects = new CollisionRect().getList()
 
 //player
 const player = {
@@ -265,22 +267,41 @@ function collision(first, second){
     }
 }
 
+//orizontal collision
+
+function collisionX(player, list){
+    for (let i = 0; i< list.length; i++){
+        
+        if(player.x+player.width > list[i].getX || player.x < list[i].x+32){
+            
+            return false
+        }
+        else {
+            
+            return true
+        }
+    }
+    
+}
+
+//vertical collision
+
 // Loop
 if(gameOver == false){
     setInterval(function(){
         ctx.clearRect(0,0,canvas.width,canvas.height)
-        //ctx.drawImage(background, 0,-250, canvas.width, canvas.height);
         buildTerrain.draw(ctx)
         buildObstacles.draw(ctx)
-        //ctx.drawImage(flor, terrain.x, terrain.y, terrain.width, terrain.height)
         drawSprite(playerSprite, player.width * player.frameX, player.height * player.frameY, player.width, player.height, player.x, player.y, player.width, player.height)
         topFrame()
         handlePlayerFrame()
         handleEnemies ()
         movePlayer();
+        collisionX(player,rects)
         handleAmmo();
         damage();
         lose()
+        console.log(rects)
         frame ++
     }, 40)
 }
