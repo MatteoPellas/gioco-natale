@@ -269,20 +269,29 @@ function collision(first, second){
 
 //orizontal collision
 
-function collisionX(player, list){
+function collisionY(player, list){
     for (let i = 0; i< list.length; i++){
         
         if(player.x+player.width > list[i].getX || player.x < list[i].x+32){
-            
-            return false
+            if(player.y< list[i].y+32 || player.y+player.height > list[i].getY){
+                player.speed = 0
+
+            }else{
+                player.speed = 2
+            }
         }
-        else {
-            
-            return true
+        if(player.y+player.width > list[i].getX || player.x < list[i].x+32){
+            if(player.y< list[i].y+32 || player.y+player.height > list[i].getY){
+                player.speed = 0
+
+            }else{
+                player.speed = 2
+            }
         }
     }
     
 }
+
 
 //vertical collision
 
@@ -297,7 +306,7 @@ if(gameOver == false){
         handlePlayerFrame()
         handleEnemies ()
         movePlayer();
-        collisionX(player,rects)
+        collisionY(player,rects)
         handleAmmo();
         damage();
         lose()
